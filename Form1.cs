@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text;
 using System.Drawing;
@@ -28,12 +28,16 @@ namespace Graphs
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Graf.x = pictureBox1.Width / 2;//задаёт координаты
-            Graf.y = pictureBox1.Height / 2;//появления новых узлов
+            this.DoubleBuffered = true;
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            pictureBox1.Width = this.Width - 16;//выравнивание pictureBox под размеры формы
+            pictureBox1.Height = this.Height - pictureBox1.Location.Y - 39;//выравнивание pictureBox под размеры формы
+            Graf.x = pictureBox1.Width / 2;//задаёт координаты
+            Graf.y = pictureBox1.Height / 2;//появления новых узлов
+
             Bitmap buffer = new Bitmap(Width, Height);//Дополнительный буффер
             Graphics gfx = Graphics.FromImage(buffer);//Двойная буфферизация
 
