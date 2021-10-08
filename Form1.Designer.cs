@@ -1,4 +1,4 @@
-﻿
+
 namespace Graphs
 {
     partial class Form1
@@ -90,7 +90,7 @@ namespace Graphs
             // 
             this.pictureBox1.Location = new System.Drawing.Point(0, 74);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(982, 579);
+            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -164,7 +164,7 @@ namespace Graphs
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(645, 22);
+            this.radioButton2.Location = new System.Drawing.Point(645, 24);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(56, 24);
             this.radioButton2.TabIndex = 11;
@@ -176,7 +176,7 @@ namespace Graphs
             // 
             this.radioButton3.AutoSize = true;
             this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(645, 44);
+            this.radioButton3.Location = new System.Drawing.Point(645, 48);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(54, 24);
             this.radioButton3.TabIndex = 12;
@@ -256,11 +256,9 @@ namespace Graphs
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.trackBar1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1000, 700);
+            this.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1000, 700);
+            this.MinimumSize = new System.Drawing.Size(1000, 400);
             this.Name = "Form1";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -297,4 +295,3 @@ namespace Graphs
         private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
-
