@@ -6,32 +6,32 @@ namespace Graphs
 {
     public static class Match
     {
-        public static double degtorad(double deg)//градусы в радианы
+        public static double degtorad(double deg)//РіСЂР°РґСѓСЃС‹ РІ СЂР°РґРёР°РЅС‹
         {
             return deg * Math.PI / 180;
         }
 
-        public static double radtodeg(double rad)//радианы в градусы
+        public static double radtodeg(double rad)//СЂР°РґРёР°РЅС‹ РІ РіСЂР°РґСѓСЃС‹
         {
             return rad / Math.PI * 180;
         }
 
-        public static double lengthdir_x(double len,double dir)//расстояние по X при передвижении по направлению
+        public static double lengthdir_x(double len,double dir)//СЂР°СЃСЃС‚РѕСЏРЅРёРµ РїРѕ X РїСЂРё РїРµСЂРµРґРІРёР¶РµРЅРёРё РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ
         {
             return len * Math.Cos(degtorad(dir));
         }
 
-        public static double lengthdir_y(double len, double dir)//расстояние по Y при передвижении по направлению
+        public static double lengthdir_y(double len, double dir)//СЂР°СЃСЃС‚РѕСЏРЅРёРµ РїРѕ Y РїСЂРё РїРµСЂРµРґРІРёР¶РµРЅРёРё РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ
         {
             return len * Math.Sin(degtorad(dir)) * (-1);
         }
 
-        public static double point_direction(int x1,int y1,int x2,int y2)//угол направления между двумя точками 
+        public static double point_direction(int x1,int y1,int x2,int y2)//СѓРіРѕР» РЅР°РїСЂР°РІР»РµРЅРёСЏ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё 
         {
             return 180 - radtodeg(Math.Atan2(y1 - y2, x1 - x2));
         }
 
-        public static double point_distance(int x1, int y1, int x2, int y2)//расстояние между двумя точками
+        public static double point_distance(int x1, int y1, int x2, int y2)//СЂР°СЃСЃС‚РѕСЏРЅРёРµ РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё
         {
             return Math.Sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         }
@@ -41,60 +41,60 @@ namespace Graphs
     {
         public class Node
         {
-            public int id;//уникальный идентификатор узла
-            public int active;//статус обработки узла
-            public int prev;//предыдущий узел (нужен для нерекурсивного DFS обхода)
-            public int chk;//проверяемый узел (нужен для нерекурсивного DFS обхода)
-            public int x;//координаты
-            public int y;//для отрисовки вершины
-            public string name;//отображаемое имя
-            public List<int> edges;//список смежности
+            public int id;//СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СѓР·Р»Р°
+            public int active;//СЃС‚Р°С‚СѓСЃ РѕР±СЂР°Р±РѕС‚РєРё СѓР·Р»Р°
+            public int prev;//РїСЂРµРґС‹РґСѓС‰РёР№ СѓР·РµР» (РЅСѓР¶РµРЅ РґР»СЏ РЅРµСЂРµРєСѓСЂСЃРёРІРЅРѕРіРѕ DFS РѕР±С…РѕРґР°)
+            public int chk;//РїСЂРѕРІРµСЂСЏРµРјС‹Р№ СѓР·РµР» (РЅСѓР¶РµРЅ РґР»СЏ РЅРµСЂРµРєСѓСЂСЃРёРІРЅРѕРіРѕ DFS РѕР±С…РѕРґР°)
+            public int x;//РєРѕРѕСЂРґРёРЅР°С‚С‹
+            public int y;//РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё РІРµСЂС€РёРЅС‹
+            public string name;//РѕС‚РѕР±СЂР°Р¶Р°РµРјРѕРµ РёРјСЏ
+            public List<int> edges;//СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё
 
             public void AddEdge(int id)
             {
-                if (!edges.Contains(id)) edges.Add(id);//добавить узел в список смежности если его там не было
+                if (!edges.Contains(id)) edges.Add(id);//РґРѕР±Р°РІРёС‚СЊ СѓР·РµР» РІ СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё РµСЃР»Рё РµРіРѕ С‚Р°Рј РЅРµ Р±С‹Р»Рѕ
             }
 
             public void RemoveEdge(int id)
             {
-                edges.Remove(id);//удаление узла из списка смежности
+                edges.Remove(id);//СѓРґР°Р»РµРЅРёРµ СѓР·Р»Р° РёР· СЃРїРёСЃРєР° СЃРјРµР¶РЅРѕСЃС‚Рё
             }
         };
 
-        public List<Node> nodes = new List<Node>();//узлы графа
-        private int maxid = 0;//для запоминания уникальных идентификаторов
-        public int x = 0;//координаты
-        public int y = 0;//появления новых узлов
-        public int sz = 32;//размер узлов (для отрисовки)
+        public List<Node> nodes = new List<Node>();//СѓР·Р»С‹ РіСЂР°С„Р°
+        private int maxid = 0;//РґР»СЏ Р·Р°РїРѕРјРёРЅР°РЅРёСЏ СѓРЅРёРєР°Р»СЊРЅС‹С… РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРІ
+        public int x = 0;//РєРѕРѕСЂРґРёРЅР°С‚С‹
+        public int y = 0;//РїРѕСЏРІР»РµРЅРёСЏ РЅРѕРІС‹С… СѓР·Р»РѕРІ
+        public int sz = 32;//СЂР°Р·РјРµСЂ СѓР·Р»РѕРІ (РґР»СЏ РѕС‚СЂРёСЃРѕРІРєРё)
 
-        public Queue<int> nodes_q = new Queue<int>();//очередь для BFS обхода
+        public Queue<int> nodes_q = new Queue<int>();//РѕС‡РµСЂРµРґСЊ РґР»СЏ BFS РѕР±С…РѕРґР°
 
-        public void AddNode(string name)//добавление узла в граф
+        public void AddNode(string name)//РґРѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р° РІ РіСЂР°С„
         {
-            bool find = false;//найдено пустое место между 0 и максимальным известным идентификатором
-            int id = 0;//новый уникальный идентификатор
-            for (int i = 0; i < maxid; i++)//проверить для всех идентификаторов от 0 до максимального
+            bool find = false;//РЅР°Р№РґРµРЅРѕ РїСѓСЃС‚РѕРµ РјРµСЃС‚Рѕ РјРµР¶РґСѓ 0 Рё РјР°РєСЃРёРјР°Р»СЊРЅС‹Рј РёР·РІРµСЃС‚РЅС‹Рј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј
+            int id = 0;//РЅРѕРІС‹Р№ СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
+            for (int i = 0; i < maxid; i++)//РїСЂРѕРІРµСЂРёС‚СЊ РґР»СЏ РІСЃРµС… РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРІ РѕС‚ 0 РґРѕ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ
             {
-                bool exist = false;//такой идентификатор уже существует
+                bool exist = false;//С‚Р°РєРѕР№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
                 foreach (Node nd in nodes)
                 {
                     if (nd.id == i)
                     {
-                        exist = true;//найден указанный идентификатор
+                        exist = true;//РЅР°Р№РґРµРЅ СѓРєР°Р·Р°РЅРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
                         break;
                     }
                 }
-                if (!exist)//если не существует указанный идентификатор, то 
+                if (!exist)//РµСЃР»Рё РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ СѓРєР°Р·Р°РЅРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ, С‚Рѕ 
                 {
-                    id = i;//на его место
-                    find = true;//можно поместить новый узел
+                    id = i;//РЅР° РµРіРѕ РјРµСЃС‚Рѕ
+                    find = true;//РјРѕР¶РЅРѕ РїРѕРјРµСЃС‚РёС‚СЊ РЅРѕРІС‹Р№ СѓР·РµР»
                     break;
                 }
             }
-            if (!find)//если пустое место не найдено
+            if (!find)//РµСЃР»Рё РїСѓСЃС‚РѕРµ РјРµСЃС‚Рѕ РЅРµ РЅР°Р№РґРµРЅРѕ
             {
                 id = maxid;
-                maxid++;//просто добавить в конец
+                maxid++;//РїСЂРѕСЃС‚Рѕ РґРѕР±Р°РІРёС‚СЊ РІ РєРѕРЅРµС†
             }
             Node n = new Node();
             n.id = id;
@@ -103,35 +103,35 @@ namespace Graphs
             n.chk = -1;
             n.x = x;
             n.y = y;
-            //все параметры задаются по умолчанию
+            //РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РґР°СЋС‚СЃСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
             if (name != "")
                 n.name = name;
             else
-                n.name = id.ToString();//если имя не указано, то прописать туда идентификатор
-            n.edges = new List<int>();//пустой список смежности
+                n.name = id.ToString();//РµСЃР»Рё РёРјСЏ РЅРµ СѓРєР°Р·Р°РЅРѕ, С‚Рѕ РїСЂРѕРїРёСЃР°С‚СЊ С‚СѓРґР° РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
+            n.edges = new List<int>();//РїСѓСЃС‚РѕР№ СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё
             nodes.Add(n);
-            nodes.Sort((x, y) => x.id.CompareTo(y.id));//сортировка по идентификатору для оптимизации
+            nodes.Sort((x, y) => x.id.CompareTo(y.id));//СЃРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ РґР»СЏ РѕРїС‚РёРјРёР·Р°С†РёРё
         }
 
-        public void RemoveNode(int id)//удаление узла из графа
+        public void RemoveNode(int id)//СѓРґР°Р»РµРЅРёРµ СѓР·Р»Р° РёР· РіСЂР°С„Р°
         {
             Node n = null;
             foreach (Node nd in nodes)
             {
-                nd.edges.Remove(id);//удалить узел из списков смежности у всех других узлов
+                nd.edges.Remove(id);//СѓРґР°Р»РёС‚СЊ СѓР·РµР» РёР· СЃРїРёСЃРєРѕРІ СЃРјРµР¶РЅРѕСЃС‚Рё Сѓ РІСЃРµС… РґСЂСѓРіРёС… СѓР·Р»РѕРІ
                 if (nd.id == id)
                 {
-                    n = nd;//найти сам удаляемый узел
+                    n = nd;//РЅР°Р№С‚Рё СЃР°Рј СѓРґР°Р»СЏРµРјС‹Р№ СѓР·РµР»
                 }
             }
             nodes.Remove(n);
         }
 
-        public void LoadNode(int id, int x, int y, string name, List<int> e)//добавление узла при загрузке из файла
+        public void LoadNode(int id, int x, int y, string name, List<int> e)//РґРѕР±Р°РІР»РµРЅРёРµ СѓР·Р»Р° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РёР· С„Р°Р№Р»Р°
         {
             Node n = new Node();
             if (maxid <= id)
-                maxid = id + 1;//запомнить новый максимальный идентификатор
+                maxid = id + 1;//Р·Р°РїРѕРјРЅРёС‚СЊ РЅРѕРІС‹Р№ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ
             n.id = id;
             n.active = 0;
             n.prev = -1;
@@ -143,9 +143,9 @@ namespace Graphs
             else
                 n.name = id.ToString();
             n.edges = e;
-            //все параметры, необходимые для создания узла, передаются в функцию, включая список смежности
+            //РІСЃРµ РїР°СЂР°РјРµС‚СЂС‹, РЅРµРѕР±С…РѕРґРёРјС‹Рµ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ СѓР·Р»Р°, РїРµСЂРµРґР°СЋС‚СЃСЏ РІ С„СѓРЅРєС†РёСЋ, РІРєР»СЋС‡Р°СЏ СЃРїРёСЃРѕРє СЃРјРµР¶РЅРѕСЃС‚Рё
             nodes.Add(n);
-            nodes.Sort((x, y) => x.id.CompareTo(y.id));
+            nodes.Sort((xx, yy) => xx.id.CompareTo(yy.id));
         }
     }
     static class Program
@@ -156,7 +156,7 @@ namespace Graphs
         [STAThread]
         static void Main()
         {
-            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            //Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
